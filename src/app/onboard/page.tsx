@@ -2,10 +2,12 @@
 
 import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { usePrivy } from "@privy-io/react-auth";
 import { useAuth } from "@/lib/auth/hooks";
 
 function OnboardContent() {
   const { authenticated, ready, walletAddress } = useAuth();
+  const { getAccessToken } = usePrivy();
   const router = useRouter();
   const searchParams = useSearchParams();
   const suggestedRole = searchParams.get("role") || "FAN";
@@ -31,9 +33,15 @@ function OnboardContent() {
     setError("");
 
     try {
+      const accessToken = await getAccessToken();
+      if (!accessToken) throw new Error("Not authenticated");
+
       const res = await fetch("/api/auth/onboard", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
         body: JSON.stringify({
           displayName,
           creatorSlug: role === "CREATOR" ? creatorSlug : undefined,

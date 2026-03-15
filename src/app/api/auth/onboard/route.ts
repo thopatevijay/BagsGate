@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/db/client";
 import { PrivyClient } from "@privy-io/server-auth";
+import { upsertUser, isSlugAvailable } from "@/lib/db/queries";
 
 const privyClient = new PrivyClient(
   process.env.NEXT_PUBLIC_PRIVY_APP_ID!,
@@ -36,10 +36,8 @@ export async function POST(req: NextRequest) {
     }
 
     if (creatorSlug) {
-      const existing = await prisma.user.findUnique({
-        where: { creatorSlug },
-      });
-      if (existing && existing.privyId !== privyId) {
+      const available = await isSlugAvailable(creatorSlug);
+      if (!available) {
         return NextResponse.json(
           { error: "This slug is already taken" },
           { status: 409 }
@@ -47,23 +45,12 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    const user = await prisma.user.upsert({
-      where: { privyId },
-      update: {
-        displayName,
-        bio,
-        role,
-        walletAddress,
-        creatorSlug: role === "CREATOR" ? creatorSlug : null,
-      },
-      create: {
-        privyId,
-        displayName,
-        bio,
-        role,
-        walletAddress,
-        creatorSlug: role === "CREATOR" ? creatorSlug : null,
-      },
+    const user = await upsertUser(privyId, {
+      displayName,
+      bio,
+      role,
+      walletAddress,
+      creatorSlug,
     });
 
     return NextResponse.json({ user });
