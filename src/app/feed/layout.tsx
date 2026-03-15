@@ -10,8 +10,10 @@ export default function FanLayout({
     <div className="min-h-screen">
       <Navbar />
       <div className="flex">
-        <FanSidebar />
-        <main className="flex-1 p-6">{children}</main>
+        <div className="hidden md:block">
+          <FanSidebar />
+        </div>
+        <main className="flex-1 p-4 sm:p-6">{children}</main>
       </div>
     </div>
   );
