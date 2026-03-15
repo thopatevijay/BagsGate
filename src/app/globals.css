@@ -5,53 +5,63 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --accent: oklch(0.541 0.281 293.009);
-  --accent-light: oklch(0.606 0.25 292.717);
-  --accent-foreground: oklch(0.985 0 0);
+  /* ─── Palette: Midnight Ledger ─── */
+  /* Page background — dark navy with slight indigo warmth */
+  --background: #0b0d14;
+  --foreground: #eeeef0;
 
-  --background: #09090b;
-  --foreground: #fafafa;
-  --card: #111113;
-  --card-foreground: #fafafa;
-  --popover: #111113;
-  --popover-foreground: #fafafa;
-  --surface: #111113;
-  --surface-hover: #1a1a1e;
+  /* Cards — clearly lifted above background */
+  --card: #141620;
+  --card-foreground: #eeeef0;
+  --popover: #141620;
+  --popover-foreground: #eeeef0;
+  --surface: #141620;
+  --surface-hover: #1b1d2b;
 
-  --primary: oklch(0.541 0.281 293.009);
-  --primary-foreground: #fafafa;
+  /* Brand purple */
+  --primary: #7c3aed;
+  --primary-foreground: #ffffff;
+  --accent: #7c3aed;
+  --accent-light: #8b5cf6;
+  --accent-foreground: #ffffff;
 
-  --secondary: #1c1c20;
-  --secondary-foreground: #e4e4e7;
+  /* Secondary — a softer elevated surface */
+  --secondary: #1a1c28;
+  --secondary-foreground: #d1d1d6;
 
-  --muted: #27272a;
-  --muted-foreground: #a1a1aa;
+  /* Muted — readable secondary text */
+  --muted: #1e2030;
+  --muted-foreground: #8b8fa3;
 
-  --border: #27272a;
-  --input: #27272a;
-  --ring: oklch(0.541 0.281 293.009);
+  /* Borders — visible with indigo tint */
+  --border: #252838;
+  --input: #1e2030;
+  --ring: #7c3aed;
 
+  /* Status */
   --destructive: #ef4444;
-  --success: #22c55e;
-  --error: #ef4444;
-  --warning: #f59e0b;
+  --success: #34d399;
+  --error: #f87171;
+  --warning: #fbbf24;
 
-  --chart-1: oklch(0.541 0.281 293.009);
+  /* Charts */
+  --chart-1: #7c3aed;
   --chart-2: #6366f1;
   --chart-3: #8b5cf6;
   --chart-4: #a78bfa;
   --chart-5: #c4b5fd;
 
-  --radius: 0.75rem;
+  --radius: 0.625rem;
 
-  --sidebar: #0c0c0e;
-  --sidebar-foreground: #fafafa;
-  --sidebar-primary: oklch(0.541 0.281 293.009);
-  --sidebar-primary-foreground: #fafafa;
-  --sidebar-accent: #1c1c20;
-  --sidebar-accent-foreground: #e4e4e7;
-  --sidebar-border: #27272a;
-  --sidebar-ring: oklch(0.541 0.281 293.009);
+  /* Sidebar */
+  --sidebar: #0d0f17;
+  --sidebar-foreground: #eeeef0;
+  --sidebar-primary: #7c3aed;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #1a1c28;
+  --sidebar-accent-foreground: #d1d1d6;
+  --sidebar-border: #252838;
+  --sidebar-ring: #7c3aed;
 }
 
 @theme inline {
@@ -104,51 +114,73 @@
 }
 
 body {
-  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans), "DM Sans", system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Scrollbar */
+/* ─── Scrollbar ─── */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 99px; }
-::-webkit-scrollbar-thumb:hover { background: #52525b; }
+::-webkit-scrollbar-thumb { background: #2e3146; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #3d4059; }
 
-/* Gradient text */
+/* ─── Utilities ─── */
+
+/* Gradient text — warm violet to cool indigo */
 .text-gradient {
-  background: linear-gradient(135deg, #a78bfa, #7c3aed, #6366f1);
+  background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 50%, #6366f1 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Card hover */
-.card-hover {
-  transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
+/* Card with visible elevation */
+.elevated-card {
+  background: #141620;
+  border: 1px solid #252838;
+  border-radius: 0.75rem;
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
 }
-.card-hover:hover {
+.elevated-card:hover {
+  border-color: #353950;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
   transform: translateY(-1px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-  border-color: #3f3f46;
 }
 
-/* Fade up animation */
+/* Fade up for load animations */
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(12px); }
+  from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: translateY(0); }
 }
 .animate-fade-up {
-  animation: fade-up 0.5s ease-out both;
+  animation: fade-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* Glow for CTA */
-.btn-glow {
-  box-shadow: 0 0 20px rgba(124, 58, 237, 0.2);
-  transition: all 150ms ease;
+/* Button glow */
+.btn-primary {
+  background: #7c3aed;
+  color: #fff;
+  border: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 0 16px rgba(124, 58, 237, 0.15);
+  transition: all 160ms ease;
 }
-.btn-glow:hover {
-  box-shadow: 0 0 30px rgba(124, 58, 237, 0.35);
+.btn-primary:hover {
+  background: #6d28d9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 0 24px rgba(124, 58, 237, 0.25);
+}
+
+/* Secondary outline button */
+.btn-outline {
+  background: transparent;
+  border: 1px solid #353950;
+  color: #d1d1d6;
+  transition: all 160ms ease;
+}
+.btn-outline:hover {
+  border-color: #4a4e68;
+  background: #141620;
+  color: #eeeef0;
 }
 
 @layer base {
