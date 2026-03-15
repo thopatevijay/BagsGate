@@ -49,3 +49,5 @@ next-env.d.ts
 # project docs (private)
 CLAUDE.md
 PRP.md
+
+/src/generated/prisma
