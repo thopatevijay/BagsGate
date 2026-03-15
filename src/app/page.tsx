@@ -1,65 +1,120 @@
-import Image from "next/image";
+import Link from "next/link";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="min-h-screen flex flex-col">
+      {/* Nav */}
+      <header className="border-b border-border">
+        <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+          <Link href="/" className="text-xl font-bold">
+            BagsGate
+          </Link>
+          <div className="flex items-center gap-6">
+            <Link
+              href="/explore"
+              className="text-muted hover:text-foreground transition"
+            >
+              Explore
+            </Link>
+            <Link
+              href="/login"
+              className="bg-accent hover:bg-accent-light text-white px-4 py-2 rounded-lg font-medium transition"
+            >
+              Get Started
+            </Link>
+          </div>
+        </nav>
+      </header>
+
+      {/* Hero */}
+      <main className="flex-1 flex items-center justify-center px-6">
+        <div className="max-w-3xl text-center">
+          <h1 className="text-5xl sm:text-6xl font-bold tracking-tight mb-6">
+            Gate your content.
+            <br />
+            <span className="text-accent">Earn from every trade.</span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-xl text-muted mb-10 max-w-2xl mx-auto">
+            Launch a token on Bags. Gate your exclusive content behind it. Fans
+            buy to access. You earn fee-sharing revenue on every buy and sell —
+            forever.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          <div className="flex items-center justify-center gap-4">
+            <Link
+              href="/login?role=creator"
+              className="bg-accent hover:bg-accent-light text-white px-8 py-3 rounded-lg font-semibold text-lg transition"
+            >
+              Start as Creator
+            </Link>
+            <Link
+              href="/explore"
+              className="border border-border hover:border-muted text-foreground px-8 py-3 rounded-lg font-semibold text-lg transition"
+            >
+              Explore Creators
+            </Link>
+          </div>
         </div>
       </main>
+
+      {/* How it works */}
+      <section className="border-t border-border py-20 px-6">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            How it works
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-surface border border-border rounded-xl p-6">
+              <div className="text-3xl font-bold text-accent mb-3">1</div>
+              <h3 className="text-lg font-semibold mb-2">Launch your token</h3>
+              <p className="text-muted">
+                Create a social token on Bags with built-in fee-sharing. Set
+                your splits — you earn on every trade.
+              </p>
+            </div>
+            <div className="bg-surface border border-border rounded-xl p-6">
+              <div className="text-3xl font-bold text-accent mb-3">2</div>
+              <h3 className="text-lg font-semibold mb-2">Gate your content</h3>
+              <p className="text-muted">
+                Set a token threshold. Fans who hold enough tokens unlock your
+                exclusive posts, media, and files.
+              </p>
+            </div>
+            <div className="bg-surface border border-border rounded-xl p-6">
+              <div className="text-3xl font-bold text-accent mb-3">3</div>
+              <h3 className="text-lg font-semibold mb-2">Earn forever</h3>
+              <p className="text-muted">
+                Every buy and sell generates trading fees. You earn a share
+                automatically — no subscriptions, no cuts, no delays.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-border py-8 px-6">
+        <div className="max-w-7xl mx-auto flex items-center justify-between text-sm text-muted">
+          <span>BagsGate — Built on Bags.fm</span>
+          <div className="flex items-center gap-4">
+            <a
+              href="https://github.com/thopatevijay/BagsGate"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-foreground transition"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://bags.fm"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-foreground transition"
+            >
+              Bags.fm
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
