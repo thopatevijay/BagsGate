@@ -11,122 +11,106 @@ export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="border-b border-border bg-background/80 backdrop-blur-sm sticky top-0 z-50">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
-        <Link href="/" className="text-xl font-bold">
-          BagsGate
+    <header className="border-b border-border/50 bg-background/70 backdrop-blur-xl sticky top-0 z-50">
+      <nav className="max-w-6xl mx-auto px-5 sm:px-8 h-14 flex items-center justify-between">
+        <Link href="/" className="text-lg font-bold tracking-tight">
+          <span className="text-gradient">Bags</span>
+          <span className="text-foreground">Gate</span>
         </Link>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-4">
-          <Link
-            href="/explore"
-            className="text-muted-foreground hover:text-foreground transition text-sm"
-          >
+        {/* Desktop */}
+        <div className="hidden md:flex items-center gap-1">
+          <Link href="/explore" className="px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground rounded-lg hover:bg-secondary/50 transition-all">
             Explore
           </Link>
-          <Link
-            href="/explore/leaderboard"
-            className="text-muted-foreground hover:text-foreground transition text-sm"
-          >
+          <Link href="/explore/leaderboard" className="px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground rounded-lg hover:bg-secondary/50 transition-all">
             Leaderboard
           </Link>
 
           {authenticated ? (
             <>
-              <Link
-                href="/dashboard"
-                className="text-muted-foreground hover:text-foreground transition text-sm"
-              >
+              <Link href="/dashboard" className="px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground rounded-lg hover:bg-secondary/50 transition-all">
                 Dashboard
               </Link>
-              <div className="flex items-center gap-2">
+              <div className="ml-2 pl-3 border-l border-border/50 flex items-center gap-2">
                 {walletAddress && (
-                  <span className="text-xs text-muted-foreground bg-secondary px-2 py-1 rounded-md font-mono">
+                  <span className="text-[11px] text-muted-foreground bg-secondary/80 px-2.5 py-1 rounded-md font-mono tracking-wider">
                     {formatAddress(walletAddress)}
                   </span>
                 )}
-                <Button variant="ghost" size="sm" onClick={logout}>
+                <Button variant="ghost" size="sm" onClick={logout} className="text-muted-foreground hover:text-foreground">
                   Sign Out
                 </Button>
               </div>
             </>
           ) : (
-            <Button onClick={login} size="sm">
-              Get Started
-            </Button>
+            <div className="ml-2 pl-3 border-l border-border/50">
+              <Button onClick={login} size="sm" className="bg-primary hover:bg-accent-light text-primary-foreground transition-all hover:shadow-[0_0_15px_oklch(0.541_0.281_293.009_/_0.25)]">
+                Get Started
+              </Button>
+            </div>
           )}
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile toggle */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden p-2 text-muted-foreground"
+          className="md:hidden p-2 text-muted-foreground hover:text-foreground transition-colors rounded-lg"
           aria-label="Toggle menu"
         >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
             {menuOpen ? (
-              <path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" />
+              <>
+                <path d="M4 4l10 10" /><path d="M14 4L4 14" />
+              </>
             ) : (
-              <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+              <>
+                <path d="M2 5h14" /><path d="M2 9h14" /><path d="M2 13h14" />
+              </>
             )}
           </svg>
         </button>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden border-t border-border px-4 py-3 space-y-3">
-          <Link
-            href="/explore"
-            onClick={() => setMenuOpen(false)}
-            className="block text-sm text-muted-foreground hover:text-foreground"
-          >
-            Explore
-          </Link>
-          <Link
-            href="/explore/leaderboard"
-            onClick={() => setMenuOpen(false)}
-            className="block text-sm text-muted-foreground hover:text-foreground"
-          >
-            Leaderboard
-          </Link>
+        <div className="md:hidden border-t border-border/40 bg-background/95 backdrop-blur-xl px-5 py-4 space-y-1">
+          {[
+            { href: "/explore", label: "Explore" },
+            { href: "/explore/leaderboard", label: "Leaderboard" },
+            ...(authenticated
+              ? [
+                  { href: "/dashboard", label: "Dashboard" },
+                  { href: "/portfolio", label: "Portfolio" },
+                  { href: "/notifications", label: "Notifications" },
+                ]
+              : []),
+          ].map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setMenuOpen(false)}
+              className="block px-3 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/50 rounded-lg transition-all"
+            >
+              {link.label}
+            </Link>
+          ))}
+
           {authenticated ? (
-            <>
-              <Link
-                href="/dashboard"
-                onClick={() => setMenuOpen(false)}
-                className="block text-sm text-muted-foreground hover:text-foreground"
-              >
-                Dashboard
-              </Link>
-              <Link
-                href="/portfolio"
-                onClick={() => setMenuOpen(false)}
-                className="block text-sm text-muted-foreground hover:text-foreground"
-              >
-                Portfolio
-              </Link>
-              <Link
-                href="/notifications"
-                onClick={() => setMenuOpen(false)}
-                className="block text-sm text-muted-foreground hover:text-foreground"
-              >
-                Notifications
-              </Link>
+            <div className="pt-2 mt-2 border-t border-border/40">
               {walletAddress && (
-                <p className="text-xs text-muted-foreground font-mono">
-                  {formatAddress(walletAddress)}
-                </p>
+                <p className="px-3 py-1 text-[11px] text-muted-foreground font-mono">{formatAddress(walletAddress)}</p>
               )}
-              <Button variant="ghost" size="sm" onClick={logout} className="w-full justify-start p-0">
+              <button onClick={logout} className="w-full text-left px-3 py-2.5 text-sm text-muted-foreground hover:text-foreground rounded-lg transition-all">
                 Sign Out
-              </Button>
-            </>
+              </button>
+            </div>
           ) : (
-            <Button onClick={login} size="sm" className="w-full">
-              Get Started
-            </Button>
+            <div className="pt-3">
+              <Button onClick={login} className="w-full bg-primary hover:bg-accent-light">
+                Get Started
+              </Button>
+            </div>
           )}
         </div>
       )}
