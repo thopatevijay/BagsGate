@@ -19,6 +19,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!creator) return { title: "Creator Not Found" };
 
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://bagsgate.xyz";
+  const ogParams = new URLSearchParams({
+    title: creator.displayName || "Creator",
+    description: creator.bio || `Exclusive content on BagsGate`,
+    creator: creator.displayName || "",
+  });
+
   return {
     title: `${creator.displayName} — BagsGate`,
     description:
@@ -27,6 +34,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${creator.displayName} — BagsGate`,
       description:
         creator.bio || `Exclusive content from ${creator.displayName}`,
+      images: [`${appUrl}/api/og?${ogParams.toString()}`],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${creator.displayName} — BagsGate`,
+      description:
+        creator.bio || `Exclusive content from ${creator.displayName}`,
+      images: [`${appUrl}/api/og?${ogParams.toString()}`],
     },
   };
 }

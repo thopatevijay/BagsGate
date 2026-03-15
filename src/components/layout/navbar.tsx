@@ -22,6 +22,12 @@ export function Navbar() {
           >
             Explore
           </Link>
+          <Link
+            href="/explore/leaderboard"
+            className="text-muted-foreground hover:text-foreground transition text-sm"
+          >
+            Leaderboard
+          </Link>
 
           {authenticated ? (
             <>

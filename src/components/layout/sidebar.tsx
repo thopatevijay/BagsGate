@@ -11,6 +11,7 @@ const creatorLinks = [
   { href: "/dashboard/earnings", label: "Earnings", icon: "wallet" },
   { href: "/dashboard/analytics", label: "Analytics", icon: "bar-chart" },
   { href: "/dashboard/team", label: "Team", icon: "users" },
+  { href: "/dashboard/referrals", label: "Referrals", icon: "share" },
   { href: "/dashboard/settings", label: "Settings", icon: "settings" },
 ];
 
