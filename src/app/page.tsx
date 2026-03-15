@@ -2,31 +2,20 @@ import Link from "next/link";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen flex flex-col relative overflow-hidden">
-      {/* Background gradient orbs */}
-      <div className="pointer-events-none fixed inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-[oklch(0.541_0.281_293.009_/_0.06)] blur-[120px]" />
-        <div className="absolute top-1/2 -left-40 w-[500px] h-[500px] rounded-full bg-[oklch(0.45_0.2_260_/_0.04)] blur-[120px]" />
-        <div className="absolute -bottom-40 right-1/3 w-[400px] h-[400px] rounded-full bg-[oklch(0.541_0.281_293.009_/_0.03)] blur-[100px]" />
-      </div>
-
+    <div className="min-h-screen flex flex-col">
       {/* Nav */}
-      <header className="relative z-10 border-b border-border/50">
-        <nav className="max-w-6xl mx-auto px-5 sm:px-8 py-4 flex items-center justify-between">
+      <header className="sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-lg">
+        <nav className="max-w-6xl mx-auto px-5 sm:px-8 h-14 flex items-center justify-between">
           <Link href="/" className="text-lg font-bold tracking-tight">
-            <span className="text-gradient">Bags</span>
-            <span className="text-foreground">Gate</span>
+            <span className="text-gradient">Bags</span>Gate
           </Link>
           <div className="flex items-center gap-5">
-            <Link
-              href="/explore"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors hidden sm:block"
-            >
+            <Link href="/explore" className="text-sm text-zinc-400 hover:text-white transition hidden sm:block">
               Explore
             </Link>
             <Link
               href="/login"
-              className="text-sm font-medium bg-primary hover:bg-accent-light text-primary-foreground px-4 py-2 rounded-lg transition-all hover:shadow-[0_0_20px_oklch(0.541_0.281_293.009_/_0.3)]"
+              className="text-sm font-medium bg-[#7c3aed] hover:bg-[#6d28d9] text-white px-4 py-2 rounded-lg transition btn-glow"
             >
               Get Started
             </Link>
@@ -35,177 +24,131 @@ export default function HomePage() {
       </header>
 
       {/* Hero */}
-      <main className="relative z-10 flex-1 flex items-center justify-center px-5 sm:px-8 py-20 sm:py-32">
-        <div className="max-w-3xl text-center">
-          <div
-            className="animate-fade-up inline-flex items-center gap-2 mb-8 px-4 py-1.5 rounded-full border border-border/60 bg-secondary/50 text-sm text-muted-foreground"
-          >
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-success animate-pulse" />
-            Built on Bags.fm &middot; Powered by Solana
+      <section className="relative flex-1 flex items-center justify-center px-5 sm:px-8 py-24 sm:py-36 overflow-hidden">
+        {/* Background glow */}
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full bg-[#7c3aed]/8 blur-[100px]" />
+        </div>
+
+        <div className="relative max-w-3xl text-center">
+          <div className="animate-fade-up inline-flex items-center gap-2 mb-8 px-3.5 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/80 text-sm text-zinc-400">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            Built on Bags.fm
           </div>
 
-          <h1
-            className="animate-fade-up text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.08] mb-6"
-            style={{ animationDelay: "100ms" }}
-          >
-            Gate your content.
-            <br />
+          <h1 className="animate-fade-up text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6" style={{ animationDelay: "80ms" }}>
+            Gate your content.{" "}
             <span className="text-gradient">Earn from every trade.</span>
           </h1>
 
-          <p
-            className="animate-fade-up text-base sm:text-lg text-muted-foreground mb-10 max-w-xl mx-auto leading-relaxed"
-            style={{ animationDelay: "200ms" }}
-          >
-            Launch a social token. Gate your exclusive content behind it.
-            Fans buy to access — you earn fee-sharing revenue on every buy
-            and sell, forever.
+          <p className="animate-fade-up text-lg text-zinc-400 mb-10 max-w-lg mx-auto leading-relaxed" style={{ animationDelay: "160ms" }}>
+            Launch a social token. Gate exclusive content behind it. Fans buy to access — you earn fee-sharing on every trade, forever.
           </p>
 
-          <div
-            className="animate-fade-up flex flex-col sm:flex-row items-center justify-center gap-3"
-            style={{ animationDelay: "300ms" }}
-          >
+          <div className="animate-fade-up flex flex-col sm:flex-row items-center justify-center gap-3" style={{ animationDelay: "240ms" }}>
             <Link
               href="/login?role=creator"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-primary hover:bg-accent-light text-primary-foreground px-7 py-3 rounded-xl font-semibold text-base transition-all animate-pulse-glow hover:shadow-[0_0_30px_oklch(0.541_0.281_293.009_/_0.4)]"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#7c3aed] hover:bg-[#6d28d9] text-white px-7 py-3 rounded-xl font-semibold transition btn-glow"
             >
               Start as Creator
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="ml-0.5">
-                <path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </Link>
             <Link
               href="/explore"
-              className="w-full sm:w-auto inline-flex items-center justify-center border border-border hover:border-border/80 hover:bg-secondary/50 text-foreground px-7 py-3 rounded-xl font-semibold text-base transition-all"
+              className="w-full sm:w-auto inline-flex items-center justify-center border border-zinc-700 hover:border-zinc-600 hover:bg-zinc-900 text-white px-7 py-3 rounded-xl font-semibold transition"
             >
               Explore Creators
             </Link>
           </div>
         </div>
-      </main>
+      </section>
 
       {/* How it works */}
-      <section className="relative z-10 border-t border-border/40 py-24 sm:py-32 px-5 sm:px-8">
+      <section className="border-t border-zinc-800/60 py-20 sm:py-28 px-5 sm:px-8">
         <div className="max-w-5xl mx-auto">
-          <p
-            className="text-center text-sm font-medium tracking-widest uppercase text-muted-foreground mb-3"
-          >
-            How it works
-          </p>
-          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-16">
+          <p className="text-center text-xs font-semibold tracking-[0.2em] uppercase text-zinc-500 mb-3">How it works</p>
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-14 tracking-tight">
             Three steps to <span className="text-gradient">monetize forever</span>
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
               {
                 step: "01",
                 title: "Launch your token",
-                desc: "Create a social token on Bags with built-in fee-sharing. Configure your revenue splits — you earn on every trade.",
-                icon: (
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
-                    <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
-                  </svg>
-                ),
+                desc: "Create a social token on Bags with built-in fee-sharing. Set your revenue splits.",
+                icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" strokeWidth="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>,
               },
               {
                 step: "02",
                 title: "Gate your content",
-                desc: "Set a token threshold. Fans who hold enough tokens unlock your exclusive posts, media, files, and communities.",
-                icon: (
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
-                    <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
-                  </svg>
-                ),
+                desc: "Set a token threshold. Fans who hold enough unlock your exclusive posts, media, and files.",
+                icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" strokeWidth="1.5" strokeLinecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>,
               },
               {
                 step: "03",
                 title: "Earn forever",
-                desc: "Every buy and sell generates trading fees. You earn your share automatically — no subscriptions, no platform cuts, no delays.",
-                icon: (
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
-                    <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>
-                  </svg>
-                ),
+                desc: "Every buy and sell generates trading fees. Your share is automatic — no cuts, no delays.",
+                icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" strokeWidth="1.5" strokeLinecap="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>,
               },
-            ].map((item, i) => (
-              <div
-                key={item.step}
-                className="group relative bg-card/60 backdrop-blur border border-border/60 rounded-2xl p-7 card-hover"
-              >
+            ].map((item) => (
+              <div key={item.step} className="group bg-zinc-900/50 border border-zinc-800 rounded-xl p-6 card-hover">
                 <div className="flex items-center justify-between mb-5">
-                  <div className="p-2.5 rounded-xl bg-primary/10 border border-primary/20">
+                  <div className="w-10 h-10 rounded-lg bg-[#7c3aed]/10 border border-[#7c3aed]/20 flex items-center justify-center">
                     {item.icon}
                   </div>
-                  <span className="text-xs font-mono text-muted-foreground/50 tracking-wider">
-                    {item.step}
-                  </span>
+                  <span className="text-[11px] font-mono text-zinc-600">{item.step}</span>
                 </div>
-                <h3 className="text-base font-semibold mb-2 tracking-tight">{item.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {item.desc}
-                </p>
+                <h3 className="font-semibold mb-1.5">{item.title}</h3>
+                <p className="text-sm text-zinc-500 leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Stats / social proof */}
-      <section className="relative z-10 border-t border-border/40 py-20 px-5 sm:px-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
-            {[
-              { value: "$4M", label: "Hackathon Pool" },
-              { value: "100%", label: "On-chain Verified" },
-              { value: "0%", label: "Platform Lock-in" },
-              { value: "24/7", label: "Fee Earnings" },
-            ].map((stat) => (
-              <div key={stat.label}>
-                <p className="text-2xl sm:text-3xl font-bold text-gradient">{stat.value}</p>
-                <p className="text-xs sm:text-sm text-muted-foreground mt-1">{stat.label}</p>
-              </div>
-            ))}
-          </div>
+      {/* Stats */}
+      <section className="border-t border-zinc-800/60 py-16 px-5 sm:px-8">
+        <div className="max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
+          {[
+            { val: "$4M", label: "Hackathon Pool" },
+            { val: "100%", label: "On-chain Verified" },
+            { val: "0%", label: "Platform Lock-in" },
+            { val: "24/7", label: "Fee Earnings" },
+          ].map((s) => (
+            <div key={s.label}>
+              <p className="text-3xl sm:text-4xl font-extrabold text-gradient mb-1">{s.val}</p>
+              <p className="text-xs text-zinc-500">{s.label}</p>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* CTA */}
-      <section className="relative z-10 border-t border-border/40 py-24 px-5 sm:px-8">
-        <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4 tracking-tight">
-            Ready to own your audience?
-          </h2>
-          <p className="text-muted-foreground mb-8 text-sm sm:text-base">
-            Join creators who are building direct relationships with their fans through token-gated access on Solana.
+      <section className="border-t border-zinc-800/60 py-20 sm:py-24 px-5 sm:px-8">
+        <div className="max-w-xl mx-auto text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-4 tracking-tight">Ready to own your audience?</h2>
+          <p className="text-zinc-400 mb-8">
+            Join creators building direct relationships with fans through token-gated access on Solana.
           </p>
           <Link
             href="/login?role=creator"
-            className="inline-flex items-center gap-2 bg-primary hover:bg-accent-light text-primary-foreground px-8 py-3.5 rounded-xl font-semibold transition-all hover:shadow-[0_0_30px_oklch(0.541_0.281_293.009_/_0.4)]"
+            className="inline-flex items-center gap-2 bg-[#7c3aed] hover:bg-[#6d28d9] text-white px-8 py-3.5 rounded-xl font-semibold transition btn-glow"
           >
             Launch Your Token
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </Link>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="relative z-10 border-t border-border/30 py-8 px-5 sm:px-8">
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
+      <footer className="border-t border-zinc-800/40 py-8 px-5 sm:px-8">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
           <span>BagsGate &mdash; Token-gated creator access on Solana</span>
-          <div className="flex items-center gap-5">
-            <a href="https://github.com/thopatevijay/BagsGate" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
-              GitHub
-            </a>
-            <a href="https://bags.fm" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
-              Bags.fm
-            </a>
-            <a href="https://docs.bags.fm" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
-              Docs
-            </a>
+          <div className="flex gap-5">
+            <a href="https://github.com/thopatevijay/BagsGate" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">GitHub</a>
+            <a href="https://bags.fm" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">Bags.fm</a>
+            <a href="https://docs.bags.fm" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">Docs</a>
           </div>
         </div>
       </footer>
