@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { AuthProvider } from "@/lib/auth/provider";
+import { PostHogProvider } from "@/lib/analytics/posthog";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
   title: "BagsGate — Token-Gated Creator Access",
   description:
     "Gate your content behind your Bags token. Fans buy to access. Earn from every trade. Patreon on Solana.",
+  manifest: "/manifest.json",
   openGraph: {
     title: "BagsGate — Token-Gated Creator Access",
     description:
@@ -29,6 +31,18 @@ export const metadata: Metadata = {
     description:
       "Gate your content behind your Bags token. Fans buy to access. Earn from every trade.",
   },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "BagsGate",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#7C3AED",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({
@@ -41,7 +55,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
       >
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>
+          <PostHogProvider>{children}</PostHogProvider>
+        </AuthProvider>
       </body>
     </html>
   );
