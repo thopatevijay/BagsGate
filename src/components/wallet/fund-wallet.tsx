@@ -27,19 +27,19 @@ export function FundWalletButton({
     setError("");
 
     try {
-      await fundWallet({ address: walletAddress });
+      await fundWallet({
+        address: walletAddress,
+        options: {
+          fundingParams: {
+            tokenAddress: "So11111111111111111111111111111111111111112",
+            chain: "solana",
+          },
+        },
+      });
     } catch (err) {
       const message =
         err instanceof Error ? err.message : "Failed to open funding";
-
-      if (message.includes("not enabled")) {
-        setError(
-          "Funding not enabled. Send SOL directly to your wallet: " +
-            walletAddress
-        );
-      } else {
-        setError(message);
-      }
+      setError(message);
     }
   }
 
@@ -55,17 +55,13 @@ export function FundWalletButton({
       </Button>
       {error && (
         <div className="absolute top-full mt-2 right-0 z-50 w-72 p-3 rounded-lg bg-[#141620] border border-[#252838] text-xs text-[#8b8fa3] shadow-lg">
-          <p className="mb-1 font-medium text-[#eeeef0]">Fund your wallet</p>
+          <p className="mb-1 font-medium text-[#eeeef0]">Error</p>
           <p>{error}</p>
           <button
-            onClick={() => {
-              navigator.clipboard.writeText(walletAddress || "");
-              setError("Address copied!");
-              setTimeout(() => setError(""), 2000);
-            }}
+            onClick={() => setError("")}
             className="mt-2 text-[#7c3aed] hover:underline text-xs"
           >
-            Copy wallet address
+            Dismiss
           </button>
         </div>
       )}
