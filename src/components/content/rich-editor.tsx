@@ -19,6 +19,7 @@ export function RichEditor({
   placeholder = "Write your content...",
 }: RichEditorProps) {
   const editor = useEditor({
+    immediatelyRender: false,
     extensions: [
       StarterKit,
       Placeholder.configure({ placeholder }),
