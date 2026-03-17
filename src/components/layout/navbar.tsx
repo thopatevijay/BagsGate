@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useAuth } from "@/lib/auth/hooks";
 import { formatAddress } from "@/lib/utils/format";
 import { Button } from "@/components/ui/button";
+import { FundWalletButton } from "@/components/wallet/fund-wallet";
 
 export function Navbar() {
   const { authenticated, login, logout, walletAddress } = useAuth();
@@ -33,6 +34,7 @@ export function Navbar() {
                 Dashboard
               </Link>
               <div className="ml-2 pl-3 border-l border-border/50 flex items-center gap-2">
+                <FundWalletButton size="sm" variant="ghost" />
                 {walletAddress && (
                   <span className="text-[11px] text-muted-foreground bg-secondary/80 px-2.5 py-1 rounded-md font-mono tracking-wider">
                     {formatAddress(walletAddress)}

@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { formatSol } from "@/lib/utils/format";
 import { SOL_MINT } from "@/lib/utils/constants";
+import { FundWalletButton } from "@/components/wallet/fund-wallet";
 
 interface SwapWidgetProps {
   tokenMint: string;

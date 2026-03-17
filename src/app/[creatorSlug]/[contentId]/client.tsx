@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { SwapWidget } from "@/components/swap/swap-widget";
+import { FundWalletButton } from "@/components/wallet/fund-wallet";
 import { formatDate } from "@/lib/utils/format";
 
 interface ContentData {
@@ -175,9 +176,12 @@ export function ContentViewClient({ content }: { content: ContentData }) {
                     Sign In to Buy Tokens
                   </Button>
                 ) : (
-                  <p className="text-xs text-muted-foreground">
-                    Use the swap widget to buy ${content.gate!.token.symbol}
-                  </p>
+                  <div className="flex gap-2">
+                    <FundWalletButton variant="outline" className="flex-1" label="Fund Wallet with Card" />
+                    <p className="flex-1 text-xs text-muted-foreground flex items-center justify-center">
+                      Then use the swap widget to buy ${content.gate!.token.symbol} →
+                    </p>
+                  </div>
                 )}
               </CardContent>
             </Card>
