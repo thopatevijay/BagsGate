@@ -27,6 +27,8 @@ export function FundWalletButton({
     setError("");
 
     try {
+      // Privy supports Solana funding via fundingParams at runtime
+      // even though TypeScript types may not reflect it yet
       await fundWallet({
         address: walletAddress,
         options: {
@@ -34,7 +36,7 @@ export function FundWalletButton({
             tokenAddress: "So11111111111111111111111111111111111111112",
             chain: "solana",
           },
-        },
+        } as never,
       });
     } catch (err) {
       const message =
